@@ -1,0 +1,23 @@
+{
+  "name": "drone-location-emitter",
+  "version": "0.0.1",
+  "description": "Sends mock drone location data to Firebase",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tests --recursive"
+  },
+  "author": "Andre Deutmeyer",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^2.9.24",
+    "firebase": "^2.2.3",
+    "lodash": "^3.6.0",
+    "node-uuid": "^1.4.3",
+    "require-dir": "^0.3.0",
+    "rethinkdb": "^2.0.0-2",
+    "thinky": "^2.0.6"
+  },
+  "devDependencies": {
+    "chai": "^2.2.0"
+  }
+}
