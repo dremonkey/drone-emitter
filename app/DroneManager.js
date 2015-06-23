@@ -1,8 +1,5 @@
 'use strict';
 
-var requireDir = require('require-dir');
-
-var constants = require('./utils/constants');
 var DroneController = require('./DroneController');
 
 var SPEED = 20; // meters per second

@@ -1,6 +1,6 @@
 drone:
   build: .
-  command: nodemon index.js
+  command: nodemon app/index.js
   links:
    - db1
    # - db2

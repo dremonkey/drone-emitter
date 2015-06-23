@@ -30,6 +30,8 @@ DroneController.prototype = {
     .then(function (data) {
       var home = data.home;
       var destination = data.waypoints[home];
+
+      // TODO
     });
   },
 
@@ -150,7 +152,7 @@ DroneController.prototype = {
     return db.Drone.updateStatus(id, constants.STATUS.STOPPED);
   },
 
-  onStatusChange: function (status, oldStatus) {
+  onStatusChange: function (status) {
 
     var id = this.id;
 

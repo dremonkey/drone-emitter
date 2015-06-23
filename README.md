@@ -7,6 +7,12 @@ assigned a home location that corresponds with one of the waypoints in its route
 
 ## Usage
 
+Assuming you have docker and docker-compose already installed...
+
+```
+$ docker-compose up
+```
+
 ```
 var droneEmitter = require('drone-emitter');
 
