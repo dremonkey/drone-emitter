@@ -12,12 +12,3 @@ Assuming you have docker and docker-compose already installed...
 ```
 $ docker-compose up
 ```
-
-```
-var droneEmitter = require('drone-emitter');
-
-droneEmitter.init(10) // initialize 10 drones
-.then(function (droneManager) {
-  // use the droneManager to manage (move, stop, abort)
-}); 
-```
