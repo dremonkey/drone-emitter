@@ -1,9 +1,7 @@
-# Drone Emitter
+# Drone Overmind
 
-Experiment with RethinkDB and Docker to create a backend that mocks a bunch of 
-drones relaying their positions and status in realtime back to the database. 
-The drones follow a pre-planned route (set of harcoded waypoints) and are each 
-assigned a home location that corresponds with one of the waypoints in its route.
+Essentially a Node server with a RethinkDB backend that serves as an overmind
+for my drone army so I can control them.
 
 ## Usage
 

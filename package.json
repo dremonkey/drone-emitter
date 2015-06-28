@@ -1,7 +1,7 @@
 {
-  "name": "drone-location-emitter",
+  "name": "drone-overmind",
   "version": "0.0.1",
-  "description": "Sends mock drone location data to Firebase",
+  "description": "Overmind for my drone army",
   "main": "index.js",
   "scripts": {
     "test": "mocha tests --recursive"

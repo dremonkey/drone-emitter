@@ -8,7 +8,7 @@ drone:
   # ports:
   #  - "3100:3000"
   volumes:
-   - ./app:/home/drone-emitter/app
+   - ./app:/home/drone-overmind/app
   environment: 
    NODE_ENV: development
 db1:
