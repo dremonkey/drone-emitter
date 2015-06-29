@@ -4,26 +4,32 @@ var _ = require('lodash');
 var r = require('rethinkdb');
 var requireDir = require('require-dir');
 
-var schema = require('./schema');
 var config = require('../config');
+var schema = require('./schema');
 var Models = requireDir('../models');
 
-var exported;
+var exports;
 var connections = {};
 
-module.exports = exported = _.extend({
+var database = {
+  host: process.env.DB_HOST || 'localhost',
+  port: 28015,
+  db: config.database.db
+};
+
+module.exports = exports = _.extend({
   init: init,
   newConnection: newConnection,
 }, Models);
 
 function init () {
-  return r.connect(config.database)
+  return r.connect(database)
   .tap(function (conn) {
     return schema.init(conn);
   })
-  .then(function (conn) {
+  .then(function () {
     _.forEach(Models, function (Model, name) {
-      exported[name] = new Model();
+      exports[name] = new Model();
     });
   })
   .catch(function (err) {
@@ -33,9 +39,9 @@ function init () {
 
 function newConnection (name) {
   if (name && connections[name]) {
-    connections[name] = r.connect(config.database);
+    connections[name] = r.connect(database);
     return connections[name];
   } else {
-    return r.connect(config.database);
+    return r.connect(database);
   }
 }

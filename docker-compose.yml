@@ -1,23 +1,25 @@
-drone:
+overmind:
   build: .
   command: nodemon app/index.js
   links:
-   - db1
-   # - db2
-   # - db3
-  # ports:
-  #  - "3100:3000"
+   - overmindDB
+  ports:
+   - "8080:8080"
   volumes:
    - ./app:/home/drone-overmind/app
   environment: 
    NODE_ENV: development
-db1:
+   DB_HOST: overmindDB
+   SOCKET_IO_PORT: 8080
+overmindDB:
   image: rethinkdb:latest
-  command: rethinkdb --canonical-address 192.168.59.103 --bind all --cache-size 1024
+  # command: rethinkdb --bind all --cache-size 1024
+  # command: rethinkdb --bind all --canonical-address 192.168.59.103 --cache-size 1024
   ports:
    - "28015:28015"
    - "29015:29015" 
-   - "8080:8080"
+   - "8081:8080"
+  # mem_limit: 2G
 # db2:
 #   image: rethinkdb:latest
 #   command: rethinkdb --join 192.168.59.103:29015 --bind all --cache-size 1024

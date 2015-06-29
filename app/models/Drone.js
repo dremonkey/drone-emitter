@@ -3,9 +3,6 @@
 var r = require('rethinkdb');
 
 var tablename = 'drones';
-var config = require('../config');
-
-module.exports = Model;
 
 function Model () {}
 
@@ -110,7 +107,6 @@ Model.prototype = {
     // open changefeeds on their own connection to prevent blocking the
     // main connection
     // @see http://rethinkdb.com/api/javascript/changes/ 
-    // r.connect(config.database)
     db.newConnection('droneStatus')
     .then(function (conn) {
       r.table(tablename).get(id).changes().run(conn, function (err, cursor) {
@@ -128,4 +124,4 @@ Model.prototype = {
   }
 };
 
-
+module.exports = Model;

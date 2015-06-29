@@ -2,8 +2,12 @@
 
 var _ = require('lodash');
 var r = require('rethinkdb');
+var Promise = require('bluebird');
+
 var config = require('../config');
+
 var dbname = config.database.db;
+var tables = config.database.tables;
 
 module.exports = {
   init: init
@@ -12,7 +16,13 @@ module.exports = {
 function init (conn) {
   return initDatabase(conn)
   .then(function () {
-    return createTable(conn, 'drones');
+    var promises = [];
+    
+    _.forEach(tables, function (tablename) {
+      promises.push(createTable(conn, tablename));
+    });
+
+    return Promise.all(promises);
   });
 }
 

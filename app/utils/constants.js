@@ -8,6 +8,7 @@ module.exports = {
   STATUS: {
     ABORTING: 'aborting',
     MOVING: 'moving',
-    STOPPED: 'stopped'
+    STOPPED: 'stopped',
+    DISCONNECTED: 'disconnected'
   }
 };

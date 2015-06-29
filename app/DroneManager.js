@@ -1,43 +1,43 @@
 'use strict';
 
-var DroneController = require('./DroneController');
+var db = require('./data/db');
+var constants = require('./utils/constants');
 
-var SPEED = 20; // meters per second
-
-module.exports = {
-  create: function () {
-    return new DroneManager();
-  }
-};
-
-function DroneManager () {
-  this._drones = {};
+function DroneManager (socket) {
+  this._socket = socket;
+  this.droneId = '';
 }
 
 DroneManager.prototype = {
-  
-  abort: function (id) {
-    var controller = this._drones[id];
-    return controller.abort();
-  },
+  connect: function (drone) {
 
-  move: function (id) {
-    var controller = this._drones[id];
-    controller.move();
-  },
+    this.droneId = drone.id;
 
-  stop: function (id) {
-    var controller = this._drones[id];
-    return controller.stop();
-  },
-  
-  register: function (waypoints, homeIndex) {
-    var _this = this;
-    var controller = new DroneController(waypoints, homeIndex, SPEED);
-
-    return controller.register()
-    .tap(function (id) {
-      _this._drones[id] = controller;
+    // check if already registered
+    return db.Drone.get(drone.id)
+    .then(function (res) {
+      if (res === null) {
+        return db.Drone.create(drone);
+      }
+      return res;
     });
+  },
+  
+  disconnect: function () {
+    var _this = this;
+
+    return db.Drone.update(this.droneId, {
+      status: constants.STATUS.DISCONNECTED
+    })
+    .then(function () {
+      delete _this._socket;
+      _this.droneId = '';
+    });
+  },
+
+  update: function (data) {
+    return db.Drone.update(this.droneId, data);
   }
 };
+
+module.exports = DroneManager;
