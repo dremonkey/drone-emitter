@@ -3,9 +3,7 @@
   "version": "0.0.1",
   "description": "Overmind for my drone army",
   "main": "index.js",
-  "scripts": {
-    "test": "mocha tests --recursive"
-  },
+  "scripts": {},
   "author": "Andre Deutmeyer",
   "license": "ISC",
   "dependencies": {
