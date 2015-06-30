@@ -1,7 +1,7 @@
 # Drone Overmind
 
 Essentially a Node server with a RethinkDB backend that serves as an overmind
-for my drone army so I can control them.
+(controlled by me MWAHAHAHA) for my drone army. 
 
 ## Usage
 
